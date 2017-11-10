@@ -3,11 +3,18 @@ using System.Collections;
 
 public class GhostStun : MonoBehaviour {
 
-	// bool lightCheck;
+	bool lightCheck;
+	Flashlight flash;
+	public GameObject ghost;
 
 	// Use this for initialization
 	void Start () {
-	// lightCheck = GetComponent<FlashLight>().lightOn;
+	// lightCheck = GetComponent<Flashlight>().lightOn;
+		flash = gameObject.GetComponentInChildren<Light>().GetComponentInChildren<Flashlight>();
+		print("Obj:"+flash);
+		flash.setLightOn();
+		print("Start" + flash.isLightOn());
+
 	}
 	
 	// Update is called once per frame
@@ -16,9 +23,19 @@ public class GhostStun : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other){
-			
-			if(other.gameObject.name == "Ghost"){
+			print(other.gameObject.name);
+			print("Collider" + flash);
+			if(other.gameObject.name == "Ghost" && flash == true){
 			print("Ghost is Stunned!");
+
+			other.GetComponent<GhostAI>().movespeed = 0f;
+			StartCoroutine(Wait(5));
 		}
+	}
+
+	IEnumerator Wait(float time){
+		yield return new WaitForSeconds(time);
+		ghost.GetComponent<GhostAI>().movespeed = 5f;
+		print("Ghost is unstunned!");
 	}
 }
