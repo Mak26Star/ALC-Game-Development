@@ -4,12 +4,19 @@ using System.Collections;
 public class Flashlight : MonoBehaviour {
 
 	public bool lightOn;
+	//Flashlight power capacity
+	public int maxPower = 4;
+	//usable flashlight power
+	public int currentPower;
 
 	Light light;
 
 	// Use this for initialization
 	void Start () 
 	{
+		currentPower = maxPower;
+		print("power = " + currentPower);
+
 		light = GetComponent<Light> ();
 
 		//Set Light defualt to on
