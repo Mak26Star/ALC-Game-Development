@@ -18,7 +18,7 @@ public class Battery : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other){
 		if (other.gameObject.tag == "Player"){
-			flashlight.GameObject.GetComponentInChildren<FlashLight>().currentPower = power;
+			flashlight.gameObject.GetComponentInChildren<Flashlight>().currentPower = power;
 			Destroy(gameObject);
 		}
 	}
