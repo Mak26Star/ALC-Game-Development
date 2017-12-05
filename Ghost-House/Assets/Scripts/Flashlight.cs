@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Flashlight : MonoBehaviour {
+public class Flashlight : MonoBehaviour 
+{
 
 	public bool lightOn = true;
 	//Flashlight power capacity
@@ -16,6 +17,10 @@ public class Flashlight : MonoBehaviour {
 	public float batDrainDelay;
 
 	Light light;
+
+	bool draining = false;
+
+	long count = 0;
 
 	public Text batteryText;
 
@@ -36,13 +41,13 @@ public class Flashlight : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetKeyUp (KeyCode.F) && lightOn)
+		if (Input.GetKeyUp (KeyCode.L) && lightOn)
 		{
 			lightOn = false;
 			light.enabled = false;
 		}
 
-		else if (Input.GetKeyUp (KeyCode.F) && !lightOn)
+		else if (Input.GetKeyUp (KeyCode.L) && !lightOn)
 		{
 			lightOn = true;
 			light.enabled = true;
@@ -50,28 +55,44 @@ public class Flashlight : MonoBehaviour {
 
 		batteryText.text = currentPower.ToString();
 
-		if(currentPower > 0)
+		if(currentPower > 0 && lightOn)
 		{
-			StartCoroutine(BatteryDrain(batDrainDelay,batDrainAmt));
+			if(!draining)
+			{
+				StartCoroutine(BatteryDrain(batDrainDelay,batDrainAmt));
+			}
+			else if(currentPower <= 0)
+			{
+				lightOn = false;
+				light.enabled = false;
+			}
 		}
 	}
-	public void setLightOn(){
+	public void setLightOn()
+	{
 			lightOn = true;
 	}
 
-	public bool isLightOn(){
+	public bool isLightOn()
+	{
 		return lightOn;
 	}
 
 	IEnumerator BatteryDrain(float delay, int amount)
 	{
-		yield return new WaitForSeconds(delay);
-		currentPower -= amount;
+		if(lightOn)
+		{
+			draining = true;
+			yield return new WaitForSeconds(delay);
+			currentPower -= amount;
+		}
 		if(currentPower <= 0)
 		{
 			currentPower = 0;
 			print("Battery is dead!");
 			light.enabled = false;
 		}
+
+		draining = false;
 	}
 }
