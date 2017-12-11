@@ -29,7 +29,7 @@ public class Flashlight : MonoBehaviour
 	void Start () 
 	{
 		currentPower = maxPower;
-		print("power = " + currentPower);
+		print("Power = " + currentPower);
 
 		light = GetComponent<Light> ();
 
@@ -43,12 +43,14 @@ public class Flashlight : MonoBehaviour
 	{
 		if (Input.GetKeyUp (KeyCode.L) && lightOn)
 		{
+			print("Light Off");
 			lightOn = false;
 			light.enabled = false;
 		}
 
 		else if (Input.GetKeyUp (KeyCode.L) && !lightOn)
 		{
+			print("Light On");
 			lightOn = true;
 			light.enabled = true;
 		}
@@ -84,6 +86,7 @@ public class Flashlight : MonoBehaviour
 		{
 			draining = true;
 			yield return new WaitForSeconds(delay);
+			print(currentPower);
 			currentPower -= amount;
 		}
 		if(currentPower <= 0)
