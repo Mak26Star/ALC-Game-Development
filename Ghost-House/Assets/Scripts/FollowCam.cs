@@ -6,7 +6,7 @@ public class FollowCam : MonoBehaviour {
 	public Transform target;
 	public Vector3 defaultDistance = new Vector3(0f, 3f, -4f);
 	public float distanceDamp = 10f;
-	public float rotationDamp = 10f;
+	public float rotationalDamp = 10f;
 
 	Transform myT;
 

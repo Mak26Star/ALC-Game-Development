@@ -6,9 +6,20 @@ public class Battery : MonoBehaviour {
 	public int power = 4;
 
 	public GameObject Flashlight;
+
+	GameObject player;
+
+	// int checkBat;
+
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		player = GameObject.FindWithTag("Player");
+
+		Flashlight = player;
+
+		// checkBat = Flashlight.gameObject.GetComponentInChildren<Flashlight>().currentPower;
+		// print("CkBat ="+checkBat);
 	}
 	
 	// Update is called once per frame
@@ -17,7 +28,8 @@ public class Battery : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		if (other.gameObject.tag == "Player"){
+		if (other.gameObject.tag == "Player" && Flashlight.gameObject.GetComponentInChildren<Flashlight>().currentPower == 0 )
+		{
 			Flashlight.gameObject.GetComponentInChildren<Flashlight>().currentPower = power;
 			Destroy(gameObject);
 		}
