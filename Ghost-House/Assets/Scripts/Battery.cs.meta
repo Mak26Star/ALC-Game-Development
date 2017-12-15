@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: db4ab7c7100a44e77a98311a62130a50
-timeCreated: 1511809617
+timeCreated: 1513375000
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Flashlight: {fileID: 127740, guid: 9f39279727c014c2bbe785342b81319f, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
