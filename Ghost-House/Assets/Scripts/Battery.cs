@@ -18,13 +18,14 @@ public class Battery : MonoBehaviour {
 
 		Flashlight = player;
 
-		// checkBat = Flashlight.gameObject.GetComponentInChildren<Flashlight>().currentPower;
-		// print("CkBat ="+checkBat);
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	// checkBat = Flashlight.gameObject.GetComponentInChildren<Flashlight>().currentPower;
+		// print("CkBat ="+checkBat);
 	}
 
 	void OnCollisionEnter(Collision other){
