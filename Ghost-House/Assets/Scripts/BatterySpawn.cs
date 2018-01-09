@@ -3,9 +3,10 @@ using System.Collections;
 
 public class BatterySpawn : MonoBehaviour {
 
-
 	public Rigidbody battery;
+
 	public Transform spawnPoint;
+
 	public float spawnTime;
 
 	public bool batSpawned;
@@ -40,7 +41,7 @@ public class BatterySpawn : MonoBehaviour {
 	{
 		if(other.gameObject.tag == "Battery")
 		{
-			print("battery is in trigger")
+			print("battery is in trigger");
             batSpawned = true;
 		}
 	
